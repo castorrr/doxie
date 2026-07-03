@@ -1,0 +1,30 @@
+{
+  "name": "doxie",
+  "version": "0.1.0",
+  "description": "Ship code and docs in one go — AI-driven documentation for your codebase.",
+  "type": "module",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "doxie": "src/cli.ts"
+  },
+  "files": ["src", "templates"],
+  "scripts": {
+    "doxie": "tsx src/cli.ts",
+    "test": "tsx --test tests/*.test.ts",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "google-auth-library": "^9.0.0",
+    "googleapis": "^144.0.0",
+    "tsx": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  }
+}
