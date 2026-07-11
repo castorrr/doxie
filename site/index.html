@@ -31,6 +31,7 @@
   --term-text:  #E7E1CE;
   --term-dim:   #8A8471;
   --amber:      #E8A33D;
+  --clawd:      #D97757;
   --stamp:      #BF3B26;
   --blue:       #2C4A9A;
   --leaf:       #557A46;
@@ -218,6 +219,29 @@ code{ font-family:var(--font-mono); font-size:.92em; background:rgba(32,28,19,.0
 .tl.file::before{ content:"→ "; color:var(--term-dim); }
 .tl.spark{ color:var(--amber); }
 .tl.gap{ margin-top:.75em; }
+
+/* Claude Code boot screen inside the terminal */
+.tl.boxline{ white-space:normal; overflow:visible; }
+.cc-box{
+  position:relative;
+  display:flex; align-items:center; gap:13px;
+  border:1px solid rgba(217,119,87,.55);
+  border-radius:8px;
+  padding:13px 14px 11px;
+  margin:.7em 0 .35em;
+}
+.cc-title{
+  position:absolute; top:-0.8em; left:9px;
+  background:var(--term-bg);
+  padding:0 7px;
+  color:var(--clawd); font-size:.85em; letter-spacing:.05em;
+  line-height:1.6;
+  white-space:nowrap;
+}
+.cc-mascot{ flex:none; display:block; }
+.cc-lines{ min-width:0; line-height:1.55; }
+.cc-hi{ color:var(--term-text); font-weight:600; }
+.cc-meta{ color:var(--term-dim); font-size:.9em; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
 .caret{
   display:inline-block; width:7px; height:1.05em;
   background:var(--amber); vertical-align:text-bottom; margin-left:2px;
@@ -588,6 +612,9 @@ html.js .reveal.in{ opacity:1; transform:none; }
   transition:transform .18s, box-shadow .18s;
 }
 .footer-links a:hover{ transform:translateY(-2px); box-shadow:var(--shadow-paper); }
+.credit{ font-size:15px; color:var(--ink-soft); margin-bottom:16px; }
+.credit strong{ color:var(--ink); font-weight:700; }
+.credit a{ color:var(--blue); font-weight:500; white-space:nowrap; }
 .fine{ font-family:var(--font-mono); font-size:11px; color:var(--ink-soft); letter-spacing:.06em; }
 
 /* ============================================================
@@ -714,16 +741,35 @@ html.js .reveal.in{ opacity:1; transform:none; }
             <div class="tl dim" data-l="4">✓ .claude/commands/doxie/ — 4 slash commands</div>
             <div class="tl ok" data-l="5">Initialized doxie in ~/your-app</div>
             <div class="tl gap" data-l="6"><span class="prompt">$</span> <span class="typed" data-t="6">claude</span><span class="caret" data-c="6"></span></div>
-            <div class="tl spark" data-l="7">✻ Claude Code — /doxie commands loaded</div>
-            <div class="tl" data-l="8"><span class="prompt">&gt;</span> <span class="typed" data-t="8">/doxie:create</span><span class="caret" data-c="8"></span></div>
-            <div class="tl dim" data-l="9">reading repo signals — commits · diffs · conversation</div>
-            <div class="tl file" data-l="10">doxie-docs/overview.md</div>
-            <div class="tl file" data-l="11">doxie-docs/feature/streaming-uploads.md</div>
-            <div class="tl file" data-l="12">doxie-docs/adr/0001-postgres-over-mysql.md</div>
-            <div class="tl ok" data-l="13">Created 3 docs — each confirmed before write</div>
-            <div class="tl gap" data-l="14"><span class="prompt">&gt;</span> <span class="typed" data-t="14">/doxie:deploy</span><span class="caret" data-c="14"></span></div>
-            <div class="tl ok" data-l="15">↑ 3 docs → Google Drive · URLs unchanged</div>
-            <div class="tl" data-l="16"><span class="prompt">&gt;</span> <span class="caret blink" data-c="16"></span></div>
+            <div class="tl boxline" data-l="7">
+              <div class="cc-box">
+                <span class="cc-title">Claude Code</span>
+                <svg class="cc-mascot" width="38" height="19" viewBox="0 0 40 20" shape-rendering="crispEdges" aria-hidden="true">
+                  <rect x="4"  y="0"  width="4"  height="8" fill="var(--clawd)"/>
+                  <rect x="32" y="0"  width="4"  height="8" fill="var(--clawd)"/>
+                  <rect x="0"  y="8"  width="40" height="8" fill="var(--clawd)"/>
+                  <rect x="10" y="10" width="3"  height="3" fill="var(--term-bg)"/>
+                  <rect x="27" y="10" width="3"  height="3" fill="var(--term-bg)"/>
+                  <rect x="4"  y="16" width="4"  height="4" fill="var(--clawd)"/>
+                  <rect x="18" y="16" width="4"  height="4" fill="var(--clawd)"/>
+                  <rect x="32" y="16" width="4"  height="4" fill="var(--clawd)"/>
+                </svg>
+                <div class="cc-lines">
+                  <div class="cc-hi">Welcome back Troy!</div>
+                  <div class="cc-meta">Opus 4.8 · Claude Team · ~/your-app</div>
+                </div>
+              </div>
+            </div>
+            <div class="tl dim" data-l="8">Using Opus 4.8 · /doxie commands loaded · /model</div>
+            <div class="tl" data-l="9"><span class="prompt">❯</span> <span class="typed" data-t="9">/doxie:create</span><span class="caret" data-c="9"></span></div>
+            <div class="tl dim" data-l="10">reading repo signals — commits · diffs · conversation</div>
+            <div class="tl file" data-l="11">doxie-docs/overview.md</div>
+            <div class="tl file" data-l="12">doxie-docs/feature/streaming-uploads.md</div>
+            <div class="tl file" data-l="13">doxie-docs/adr/0001-postgres-over-mysql.md</div>
+            <div class="tl ok" data-l="14">Created 3 docs — each confirmed before write</div>
+            <div class="tl gap" data-l="15"><span class="prompt">❯</span> <span class="typed" data-t="15">/doxie:deploy</span><span class="caret" data-c="15"></span></div>
+            <div class="tl ok" data-l="16">↑ 3 docs → Google Drive · URLs unchanged</div>
+            <div class="tl" data-l="17"><span class="prompt">❯</span> <span class="caret blink" data-c="17"></span></div>
           </div>
         </div>
 
@@ -982,6 +1028,7 @@ html.js .reveal.in{ opacity:1; transform:none; }
       <a href="https://github.com/castorrr/doxie" target="_blank" rel="noopener">GitHub ↗</a>
       <a href="https://github.com/castorrr/doxie#readme" target="_blank" rel="noopener">README ↗</a>
     </div>
+    <p class="credit">Created by <strong>Castor Troy Ricafort</strong> — <a href="https://www.linkedin.com/in/castortroyricafort/" target="_blank" rel="noopener">LinkedIn ↗</a> · <a href="https://github.com/castorrr" target="_blank" rel="noopener">GitHub ↗</a></p>
     <p class="fine">built at a hackathon · 2026 · docs that keep up with the code</p>
   </div>
 </footer>
@@ -1054,18 +1101,18 @@ html.js .reveal.in{ opacity:1; transform:none; }
   var stamp = function(name){ return q('[data-stamp="'+name+'"]'); };
 
   var TYPED = {};
-  [1,6,8,14].forEach(function(n){ TYPED[n] = typedEl(n).textContent; });
+  [1,6,9,15].forEach(function(n){ TYPED[n] = typedEl(n).textContent; });
 
   function sleep(ms){ return new Promise(function(r){ setTimeout(r, ms); }); }
 
   function resetAll(){
     [].slice.call(stage.querySelectorAll('.tl, .doc-card')).forEach(function(el){ el.classList.remove('on'); });
     [].slice.call(stage.querySelectorAll('.stamp')).forEach(function(el){ el.classList.remove('on'); });
-    [1,6,8,14].forEach(function(n){
+    [1,6,9,15].forEach(function(n){
       typedEl(n).textContent = '';
       caretEl(n).classList.remove('blink');
     });
-    caretEl(16).classList.remove('blink');
+    caretEl(17).classList.remove('blink');
   }
 
   function showLine(n){ line(n).classList.add('on'); }
@@ -1098,37 +1145,39 @@ html.js .reveal.in{ opacity:1; transform:none; }
     showLine(5);
     await sleep(750);
 
-    /* $ claude → /doxie:create */
+    /* $ claude → Claude Code boots */
     await typeCmd(6);
-    await sleep(330);
-    showLine(7);
-    await sleep(480);
-    await typeCmd(8);
+    await sleep(420);
+    showLine(7);           /* welcome box */
+    await sleep(620);
+    showLine(8);           /* Using Opus 4.8 … */
+    await sleep(560);
+    await typeCmd(9);      /* ❯ /doxie:create */
     await sleep(380);
-    showLine(9);
+    showLine(10);
     await sleep(720);
 
     /* docs fly into the tray */
-    showLine(10); card(1).classList.add('on');
+    showLine(11); card(1).classList.add('on');
     await sleep(880);
-    showLine(11); card(2).classList.add('on');
+    showLine(12); card(2).classList.add('on');
     await sleep(880);
-    showLine(12); card(3).classList.add('on');
+    showLine(13); card(3).classList.add('on');
     await sleep(520);
     stamp('adr').classList.add('on');
     await sleep(680);
-    showLine(13);
+    showLine(14);
     await sleep(850);
 
-    /* /doxie:deploy */
-    await typeCmd(14);
+    /* ❯ /doxie:deploy */
+    await typeCmd(15);
     await sleep(480);
-    showLine(15);
+    showLine(16);
     await sleep(260);
     stamp('deploy').classList.add('on');
     await sleep(300);
-    showLine(16);
-    caretEl(16).classList.add('blink');
+    showLine(17);
+    caretEl(17).classList.add('blink');
 
     /* hold, then loop */
     await sleep(4600);
